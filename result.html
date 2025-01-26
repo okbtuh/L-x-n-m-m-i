@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả lì xì</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            background-color: #b0231a;
+            padding: 0;
+            color: #fff;
+        }
+
+        .card {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fce8d5;
+            border: 8px solid #b0231a;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            color: #5a1a10;
+        }
+
+        .header {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #b0231a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #8a1a13;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1 class="header">Chúc Mừng Năm Mới!</h1>
+        <p class="message" id="resultMessage"></p>
+        <button class="back-button" onclick="goBack()">Quay lại</button>
+    </div>
+
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function displayResult() {
+            const name = getQueryParam("name");
+            const amount = getQueryParam("amount");
+            const wish = getQueryParam("wish");
+
+            const resultMessage = document.getElementById("resultMessage");
+            resultMessage.innerHTML = `Chúc mừng, ${name}! Bạn đã nhận được lì xì trị giá <b>${amount} VND</b>!<br><br>${wish}`;
+        }
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+
+        // Hiển thị kết quả khi trang tải xong
+        window.onload = displayResult;
+    </script>
+</body>
+</html>

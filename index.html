@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lì xì may mắn</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            background-color: #b0231a;
+            padding: 0;
+        }
+
+        .card {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fce8d5;
+            border: 8px solid #b0231a;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            color: #b0231a;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .subheader {
+            font-size: 20px;
+            color: #5a1a10;
+            margin-top: 10px;
+        }
+
+        .input-area {
+            margin: 20px 0;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #b0231a;
+            border-radius: 8px;
+            outline: none;
+            width: 60%;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #b0231a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background-color: #8a1a13;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1 class="header">Chúc Mừng Năm Mới</h1>
+        <p class="subheader">Nhập tên để nhận lì xì may mắn!</p>
+        <div class="input-area">
+            <input type="text" id="nameInput" placeholder="Nhập tên của bạn">
+            <button onclick="generateLuckyMoney()">Nhận lì xì</button>
+        </div>
+    </div>
+
+    <script>
+        function generateLuckyMoney() {
+            const name = document.getElementById("nameInput").value.trim();
+            if (!name) {
+                alert("Vui lòng nhập tên của bạn!");
+                return;
+            }
+
+            // Danh sách các mệnh giá và trọng số
+            const amounts = [
+                { value: 10000, weight: 40 },
+                { value: 20000, weight: 30 },
+                { value: 50000, weight: 15 },
+                { value: 100000, weight: 10 },
+                { value: 200000, weight: 4 },
+                { value: 500000, weight: 1 }
+            ];
+
+            // Lời chúc ngẫu nhiên
+            const wishes = [
+                "Hy vọng năm 2025 sẽ mang đến cho bạn sự sáng tạo vô biên, khả năng không giới hạn và những điều tốt đẹp nhất mà bạn xứng đáng có được!",
+                "Chúc bạn không chỉ đạt được những mục tiêu trong công việc mà còn tìm thấy niềm vui trong từng giây phút nhỏ bé của cuộc sống!",
+                "Năm mới, mong rằng mỗi ngày của bạn đều tràn ngập ánh nắng, yêu thương và hạnh phúc. Hãy sống hết mình vì những điều bạn đam mê!",
+                "Chúc mừng năm mới! Hãy biến những ước mơ thành hiện thực và luôn giữ cho ngọn lửa đam mê trong bạn cháy bùng!",
+                "Chúc bạn một năm tràn ngập cơ hội, bí mật và trải nghiệm thú vị. Hãy cứ dũng cảm bước chắc chân trên con đường phía trước!",
+                "Hy vọng rằng 2025 sẽ mang đến cho bạn nhiều bài học quý giá và những kỷ niệm không thể nào quên. Chúc bạn luôn tiến về phía trước!"
+            ];
+
+            // Chọn ngẫu nhiên mệnh giá và lời chúc
+            const weightedAmounts = [];
+            amounts.forEach(amount => {
+                for (let i = 0; i < amount.weight; i++) {
+                    weightedAmounts.push(amount.value);
+                }
+            });
+            const randomAmount = weightedAmounts[Math.floor(Math.random() * weightedAmounts.length)];
+            const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+
+            // Chuyển hướng sang trang kết quả với dữ liệu trong URL
+            window.location.href = `result.html?name=${encodeURIComponent(name)}&amount=${randomAmount}&wish=${encodeURIComponent(randomWish)}`;
+        }
+    </script>
+</body>
+</html>
